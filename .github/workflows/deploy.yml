@@ -3,7 +3,7 @@ name: Deploy to Hugging Face Spaces
 on:
   push:
     branches:
-      - main  # or 'master' if your default branch is that
+      - main  # or master, depending on your default branch
 
 jobs:
   deploy:
@@ -13,21 +13,18 @@ jobs:
       - name: Checkout your GitHub repo
         uses: actions/checkout@v2
 
-      - name: Clone Hugging Face Space
+      - name: Deploy to Hugging Face
         run: |
           git config --global user.email "your@email.com"
           git config --global user.name "Your Name"
 
-          # Clone the HF Space
           git clone https://Pranavj24:${HF_TOKEN}@huggingface.co/spaces/Pranavj24/news-sentiment-analyzer hf-space
 
-          # Copy contents EXCLUDING the hf-space folder
           rsync -av --exclude='hf-space' ./ hf-space/
 
-          # Commit and push
           cd hf-space
           git add .
-          git commit -m "Auto deploy from GitHub" || echo "No changes to commit"
+          git commit -m "Auto deploy from GitHub" || echo "No changes"
           git push
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
