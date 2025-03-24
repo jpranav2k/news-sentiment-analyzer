@@ -1,0 +1,11 @@
+streamlit
+fastapi
+uvicorn
+requests
+beautifulsoup4
+vaderSentiment
+scikit-learn
+nltk
+gtts
+googletrans==4.0.0rc1
+networkx
