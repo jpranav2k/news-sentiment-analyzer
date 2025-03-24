@@ -1,0 +1,26 @@
+name: Deploy to Hugging Face Spaces
+
+on:
+  push:
+    branches:
+      - main  # or 'master' depending on your repo
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Push to Hugging Face
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git clone https://Pranavj24:$HF_TOKEN@huggingface.co/spaces/Pranavj24/news-sentiment-analyzer hf-space
+          cp -r * hf-space/
+          cd hf-space
+          git add .
+          git commit -m "Deploy from GitHub Action"
+          git push
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
