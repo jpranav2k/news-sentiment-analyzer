@@ -3,20 +3,20 @@ name: Deploy to Hugging Face Spaces
 on:
   push:
     branches:
-      - main  # or master, depending on your default branch
+      - main  # Or 'master' if that's your default branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout your GitHub repo
+      - name: Checkout repo
         uses: actions/checkout@v2
 
       - name: Deploy to Hugging Face
         run: |
-          git config --global user.email "your@email.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "jpranav2k@gmmail.com"
+          git config --global user.name "jpranav2k"
 
           git clone https://Pranavj24:${HF_TOKEN}@huggingface.co/spaces/Pranavj24/news-sentiment-analyzer hf-space
 
